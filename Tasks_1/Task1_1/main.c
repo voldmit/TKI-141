@@ -2,8 +2,22 @@
 #include <math.h>
 #include <stdio.h>
 
+/**
+* @brief Расчет значения функции по заданной формуле.
+* @param x - значение аргумента функции.
+* @param y - значение аргумента функции.
+* @param z - значение аргумента функции.
+* @return значение функции
+*/
 double getA(const double x, const double y, const double z);
 
+/**
+* @brief Расчет значения функции по заданной формуле.
+* @param x - значение аргумента функции.
+* @param y - значение аргумента функции.
+* @param z - значение аргумента функции.
+* @return значение функции
+*/
 double getB(const double x, const double y, const double z);
 
 int main()
