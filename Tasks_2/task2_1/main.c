@@ -1,47 +1,62 @@
 #include <stdio.h>
-#include <errno.h>
 #include <locale.h>
+#include <malloc.h>
+#include <errno.h>
+
 
 /**
-* @brief Расчитывает ззначание числа увеличенного в несколько раз.
-* @param a - число.
-* @param b - коэффициент.
-* @return значение a увеличенного в b раз
-*/
-double getn(const double a, const double b);
-
-/**
-* @brief считывает вещественное число
-* @return вещественное число
+* @brief СЃС‡РёС‚С‹РІР°РµС‚ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ
+* @return РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ
 */
 double Input(void);
+
+/**
+* @brief РІР°СЂРёР°РЅС‚С‹ РґРµР№СЃС‚РІРёСЏ РЅР°Рґ С‡РёСЃР»РѕРј
+*/
+
+enum operation
+{
+	A1 = 1,
+	A2 = 2,
+	A3 = 3
+};
+
+/**
+* @brief СЂР°СЃСЃС‡РёС‚С‹РІР°РµС‚ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ СЃ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРј
+* @param a - С‡РёСЃР»Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+* @return РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ
+*/
+
+double mult(double a, enum operation b);
+
+
+/**
+* @brief РёСЃРїРѕР»РЅСЏРµС‚ РїСЂРѕРіСЂР°РјРјСѓ
+* @return СѓСЃРїРµС€РЅРѕСЃС‚СЊ РїСЂРѕРіСЂР°РјРјС‹
+*/
 
 main(void)
 {
 	setlocale(LC_ALL, "Rus");
-	puts("Пожалуйста введите число: ");
+	puts("РџРѕР¶Р°Р»СѓР№СЃС‚Р° РІРІРµРґРёС‚Рµ С‡РёСЃР»Рѕ: ");
 	double a = Input();
-	printf("Пожалуйста введите значение во сколько раз(в 1,2,3) вы хотите увеличть число %lf: \n", a);
+	puts("\nР’Рѕ СЃРєРѕР»СЊРєРѕ СЂР°Р· С…РѕС‚РёС‚РїРµ СѓРІРµР»РёС‡РёС‚СЊ С‡РёСЃР»Рѕ:");
 	double b = Input();
-	if (b == 1)
+	double result = mult(a, b);
+	if(b != 1 & b != 2 & b != 3)
 	{
-		printf("Значение числа %lf увеличенного в %lf раз(а) равно %lf", a, b, getn(a, b));
-	}
-	else if (b == 2)
-	{
-		printf("Значение числа %lf увеличенного в %lf раз(а) равно %lf", a, b, getn(a, b));
-	}
-	else if (b == 3)
-	{
-		printf("Значение числа %lf увеличенного в %lf раз(а) равно %lf", a, b, getn(a, b));
+		errno = EIO;
+		perror("РћС€РёР±РєР° РІРІРѕРґР°");
+		return 1;
 	}
 	else
 	{
-		errno = EIO;
-		perror("введено неверное значение");
+		printf_s("Р РµР·СѓР»СЊС‚Р°С‚ РѕРїРµСЂР°С†РёРё:%lf", result);
+		return 0;
 	}
 
-	return 0;
+
+
 
 }
 
@@ -53,11 +68,22 @@ double Input(void)
 
 }
 
-double getn(const double a, const double b)
+double mult(double a, enum operation b)
 {
-	double c = a * b;
-	return c;
+
+	switch (b)
+	{
+	case A1:
+		return a;
+	case A2:
+		return a * 2;
+	case A3:
+		return a * 3;
+	default:
+
+		return 0;
+
+
+	}
+
 }
-
-
-
