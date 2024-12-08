@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <locale.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <errno.h>
 
 
@@ -13,7 +13,6 @@ double Input(void);
 /**
 * @brief варианты действия над числом
 */
-
 enum operation
 {
 	A1 = 1,
@@ -26,7 +25,6 @@ enum operation
 * @param a - число пользователя
 * @return вещественное число
 */
-
 double mult(double a, enum operation b);
 
 
@@ -34,7 +32,6 @@ double mult(double a, enum operation b);
 * @brief исполняет программу
 * @return успешность программы
 */
-
 main(void)
 {
 	setlocale(LC_ALL, "Rus");
@@ -42,28 +39,26 @@ main(void)
 	double a = Input();
 	puts("\nВо сколько раз хотитпе увеличить число:");
 	double b = Input();
-	double result = mult(a, b);
-	if(b != 1 & b != 2 & b != 3)
+	if (mult(a, b) == EXIT_FAILURE)
 	{
 		errno = EIO;
 		perror("Ошибка ввода");
 		return 1;
 	}
-	else
-	{
-		printf_s("Результат операции:%lf", result);
-		return 0;
-	}
-
-
-
-
+	printf_s("Результат операции:%lf", mult(a, b));
+	return 0;
 }
 
 double Input(void)
 {
 	double num = 0.0;
-	scanf_s("%lf", &num);
+	int p = scanf_s("%lf", &num);
+	if (p == 0)
+	{
+		errno = EIO;
+		perror("Ошибка ввода");
+		exit(1);
+	}
 	return num;
 
 }
@@ -81,9 +76,7 @@ double mult(double a, enum operation b)
 		return a * 3;
 	default:
 
-		return 0;
-
-
+		return EXIT_FAILURE;
 	}
 
 }
