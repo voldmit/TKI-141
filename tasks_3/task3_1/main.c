@@ -13,6 +13,7 @@ double fun(const double x);
 
 /**
 * @brief считывает вещественное число
+* @remarks Экстренно завершает работу программу в случае неправильного ввода.
 * @return вещественное число
 */
 double input(void);
@@ -32,10 +33,10 @@ int main(void)
 	if (x > 1)
 	{
 		errno = EDOM;
-		perror("Функцию не протубулировать на данном отрезке");
+		perror("Функцию не протабулировать на данном отрезке");
 		return 1;
 	}
-	else if (x > y)
+	if (x > y)
 	{
 		errno = EDOM;
 		perror("Введен несуществующий отрезок");
@@ -58,8 +59,7 @@ double fun(const double x)
 double input(void)
 {
 	double num = 0.0;
-	int p = scanf_s("%lf", &num);
-	if (p == 0)
+	if (scanf_s("%lf", &number) != 1))
 	{
 		errno = EIO;
 		perror("Введено неверное значение");
