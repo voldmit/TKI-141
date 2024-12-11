@@ -8,7 +8,7 @@
 * @brief считывает вещественное число
 * @return вещественное число
 */
-double Input(void);
+double input(void);
 
 /**
 * @brief варианты действия над числом
@@ -36,9 +36,9 @@ main(void)
 {
 	setlocale(LC_ALL, "Rus");
 	puts("Пожалуйста введите число: ");
-	double a = Input();
+	double a = input();
 	puts("\nВо сколько раз хотитпе увеличить число:");
-	double b = Input();
+	double b = input();
 	if (mult(a, b) == EXIT_FAILURE)
 	{
 		errno = EIO;
@@ -49,7 +49,7 @@ main(void)
 	return 0;
 }
 
-double Input(void)
+double input(void)
 {
 	double num = 0.0;
 	int p = scanf_s("%lf", &num);
