@@ -1,3 +1,4 @@
+#include <float.h>
 #include <stdio.h>
 #include <math.h> 
 #include <errno.h>
@@ -13,57 +14,69 @@ double fun(const double x);
 
 /**
 * @brief считывает вещественное число
-* @remarks Экстренно завершает работу программу в случае неправильного ввода.
 * @return вещественное число
 */
 double input(void);
 
 /**
-* @brief выполн¤ет задачу
-* @return успешность задачи
+* @brief выполняет задачу
+* @return 0 в случае успеха
 */
 int main(void)
 {
 	setlocale(LC_ALL, "Rus");
-	puts("Введите начало последовательности");
-	double x = input();
-	puts("\nВведите конец последовательности");
-	double y = input();
-
-	if (x > 1)
+	puts("Введите начало последовательности:");
+	double x1 = input();
+	if (x1 >= 1 + DBL_EPSILON)
 	{
 		errno = EDOM;
-		perror("Функцию не протабулировать на данном отрезке");
+		perror("Функцию не протубулировать на данном отрезке");
 		return 1;
 	}
-	if (x > y)
+	puts("\nВведите конец последовательности:");
+	double x2 = input();
+	if (x1 > x2)
 	{
 		errno = EDOM;
 		perror("Введен несуществующий отрезок");
 		return 1;
 	}
-	for (x; y >= x; x += 0.1)
+	puts("\nВведите шаг:");	
+	double z = input();
+	if (z <= DBL_EPSILON)
 	{
-		printf(" x = %lf || y = %lf\n", x, fun(x));
+		errno = EDOM;
+		perror("Шаг должен быть строго положительным");
+		return 1;
+	}
+	
+	for (x1; x2 >= x1 + DBL_EPSILON ; x1 += z)
+	{
+		printf(" x = %lf || y = %lf\n", x1, fun(x1));
+		if (x1 >= 1 + DBL_EPSILON)
+		{
+			puts("Дальнейшие значения не существуют");
+			break;
+		}
 	}
 	return 0;
-	
 
+		
 }
 
-double fun(const double x)
+double fun(const double x1)
 {
-	return sqrt(1 - x) - cos(sqrt(1 - x));
+	return sqrt(1 - x1) - cos(sqrt(1 - x1));
 }
 
 double input(void)
 {
-	double num = 0.0;
-	if (scanf_s("%lf", &number) != 1))
+	double number = 0.0;
+	if (scanf_s("%lf", &number) != 1)
 	{
 		errno = EIO;
 		perror("Введено неверное значение");
 		exit(1);
 	}
-	return num;
+	return number;
 }
