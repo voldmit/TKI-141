@@ -53,12 +53,11 @@ int main(void)
 	for (x1; x2 >= x1 + DBL_EPSILON ; x1 += z)
 	{
 		printf(" x = %lf || y = %lf\n", x1, fun(x1));
-		if (x1 >= 1 + DBL_EPSILON)
+	}
+	if (x1 >= 1 + DBL_EPSILON)
 		{
 			puts("Дальнейшие значения не существуют");
-			break;
 		}
-	}
 	return 0;
 
 		
