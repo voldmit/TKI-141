@@ -42,15 +42,15 @@ int main(void)
 		return 1;
 	}
 	puts("\nВведите шаг:");	
-	double z = input();
-	if (z <= DBL_EPSILON)
+	double dx = input();
+	if (dx <= DBL_EPSILON)
 	{
 		errno = EDOM;
 		perror("Шаг должен быть строго положительным");
 		return 1;
 	}
 	
-	for (x1; x2 >= x1 + DBL_EPSILON ; x1 += z)
+	for (x1; x2 >= x1 + DBL_EPSILON ; x1 += dx)
 	{
 		if (fun(x1) != fun(x1))
 		{
