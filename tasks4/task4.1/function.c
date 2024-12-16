@@ -16,7 +16,7 @@ int input(const char* message)
 	if (result != 1)
 	{
 		errno = EINVAL;
-		perror("Неправильное число");
+		perror("ГЌГҐГЇГ°Г ГўГЁГ«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г®");
 		exit(1);
 	}
 	return value;
@@ -28,7 +28,7 @@ size_t input_size(const char* message)
 	if (size <= 0)
 	{
 		errno = EDOM;
-		perror("Размер массива должен быть строго больше 0");
+		perror("ГђГ Г§Г¬ГҐГ° Г¬Г Г±Г±ГЁГўГ  Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Г±ГІГ°Г®ГЈГ® ГЎГ®Г«ГјГёГҐ 0");
 		exit(1);
 	}
 	return (size_t)size;
@@ -67,7 +67,7 @@ void manual_fill(int* const array, const size_t size)
 {
 	for (size_t i = 0; i < size; ++i)
 	{
-		printf_s("Введите %zu-й элемент", i + 1);
+		printf_s("Г‚ГўГҐГ¤ГЁГІГҐ %zu-Г© ГЅГ«ГҐГ¬ГҐГ­ГІ", i + 1);
 		array[i] = input(NULL);
 	}
 }
@@ -85,9 +85,32 @@ void check_array(const int* const array)
 	if (NULL == array)
 	{
 		errno = ENOMEM;
-		perror("Не выделена память");
+		perror("ГЌГҐ ГўГ»Г¤ГҐГ«ГҐГ­Г  ГЇГ Г¬ГїГІГј");
 		exit(1);
 	}
+}
+
+void print_array(
+	const int* const array,
+	const size_t size,
+	const char* message)
+{
+	check_array(array);
+
+	if (NULL != message)
+	{
+		printf_s("%s: ", message);
+	}
+
+	printf_s("{ ");
+
+	size_t i = 0;
+	for (; i < size - 1; ++i)
+	{
+		printf_s("%d, ", array[i]);
+	}
+
+	printf_s("%d }", array[i]);
 }
 
 void index36(const int* const array, const size_t size)
