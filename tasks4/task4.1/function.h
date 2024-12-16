@@ -21,6 +21,8 @@ void manual_fill(int* const array, const size_t size);
 
 void random_fill(int* const array, const size_t size, const int min, const int max);
 
+void print_array(const int* const array, const size_t size, const char* message);
+
 void index36(const int* const array, const size_t size);
 
 void sumchet(const int* const array, const size_t size);
