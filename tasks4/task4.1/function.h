@@ -5,23 +5,23 @@ enum fill
 	random
 };
 
-int input(const char* message);
+int input();
 
-size_t input_size(const char* message);
+size_t input_size();
 
-enum fill input_choice(const char* message);
+enum fill input_choice();
 
 int* get_array(const size_t size);
 
 void check_array(const int* const array);
 
-void print_array(const int* const array, const size_t size, const char* message);
+void print_array(const int* const array, const size_t size);
 
 void manual_fill(int* const array, const size_t size);
 
 void random_fill(int* const array, const size_t size, const int min, const int max);
 
-void print_array(const int* const array, const size_t size, const char* message);
+void print_array(const int* const array, const size_t size);
 
 void index36(const int* const array, const size_t size);
 
