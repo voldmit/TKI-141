@@ -57,16 +57,6 @@ int main(void)
 
 	print_array(array, size, "Массив");
 
-	printf_s("\nМаксимальный элемент массива %d\n", get_max(array, size));
-
-	int* copy_array = copy(array, size);
-	copy_array[0] = 100;
-	print_array(copy_array, size, "Копия Массива");
-
-	print_array(array, size, "\nМассив");
-
-	bubble_sort(array, size);
-	print_array(array, size, "\nОтсортированный Массив");
 
 	free(array);
 	free(copy_array);
