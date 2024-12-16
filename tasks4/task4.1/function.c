@@ -5,12 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int input(const char* message)
+int input()
 {
-	if (NULL != message)
-	{
-		puts(message);
-	}
 	int value = 0;
 	int result = scanf_s("%d", &value);
 	if (result != 1)
@@ -22,9 +18,9 @@ int input(const char* message)
 	return value;
 }
 
-size_t input_size(const char* message)
+size_t input_size()
 {
-	int size = input(message);
+	int size = input();
 	if (size <= 0)
 	{
 		errno = EDOM;
@@ -34,9 +30,9 @@ size_t input_size(const char* message)
 	return (size_t)size;
 }
 
-enum fill input_choice(const char* message)
+enum fill input_choice()
 {
-	const int choice = input(message);
+	const int choice = input();
 	return ((enum fill)choice);
 }
 
@@ -47,13 +43,9 @@ int* get_array(const size_t size)
 	return array;
 }
 
-void print_array(const int* const array, const size_t size, const char* message)
+void print_array(const int* const array, const size_t size)
 {
 	check_array(array);
-	if (NULL != message)
-	{
-		printf_s("%s: ", message);
-	}
 	printf_s("{ ");
 	size_t i = 0;
 	for (; i < size - 1; ++i)
@@ -92,15 +84,9 @@ void check_array(const int* const array)
 
 void print_array(
 	const int* const array,
-	const size_t size,
-	const char* message)
+	const size_t size)
 {
 	check_array(array);
-
-	if (NULL != message)
-	{
-		printf_s("%s: ", message);
-	}
 
 	printf_s("{ ");
 
@@ -147,4 +133,3 @@ void index36(const int* const array, const size_t size)
 		}
 	}
 }
-
