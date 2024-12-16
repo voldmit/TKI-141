@@ -6,7 +6,7 @@
 
 #if USE_LOCALE == 1
 #include <locale.h>
-#endif // USE_LOCALE
+#endif
 
 #include "function.h"
 
@@ -15,7 +15,7 @@ int main(void)
 {
 	#if USE_LOCALE == 1
 		setlocale(LC_ALL, "ru-RU");
-	#endif // USE_LOCALE
+	#endif 
 
 	const size_t size = input_size("Введите размер массива");
 	int* array = get_array(size);
