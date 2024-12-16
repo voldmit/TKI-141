@@ -10,10 +10,7 @@
 
 #include "function.h"
 
-/**
-* @brief Точка входа в программу.
-* @return Код ошибки. @c 0 в случае правильного выполнения.
-*/
+
 int main(void)
 {
 	#if USE_LOCALE == 1
