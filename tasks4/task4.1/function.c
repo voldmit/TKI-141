@@ -12,7 +12,7 @@ int input()
 	if (result != 1)
 	{
 		errno = EINVAL;
-		perror("Íåïðàâèëüíîå ÷èñëî");
+		perror("Неправильное число");
 		exit(1);
 	}
 	return value;
@@ -24,7 +24,7 @@ size_t input_size()
 	if (size <= 0)
 	{
 		errno = EDOM;
-		perror("Ðàçìåð ìàññèâà äîëæåí áûòü ñòðîãî áîëüøå 0");
+		perror("Размер массива должен быть строго больше нуля");
 		exit(1);
 	}
 	return (size_t)size;
@@ -59,7 +59,7 @@ void manual_fill(int* const array, const size_t size)
 {
 	for (size_t i = 0; i < size; ++i)
 	{
-		printf_s("Ââåäèòå %zu-é ýëåìåíò", i + 1);
+		printf_s("Введите %zu-й элемент", i + 1);
 		array[i] = input();
 	}
 }
@@ -77,7 +77,7 @@ int check_array(const int* const array)
 	if (NULL == array)
 	{
 		errno = ENOMEM;
-		perror("Íå âûäåëåíà ïàìÿòü");
+		perror("Не выделена память");
 		exit(1);
 	}
 	return 0;
