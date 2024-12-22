@@ -123,13 +123,10 @@ void sumchet(const int* const array, const size_t size)
 	printf_s("%d", sum);
 }
 
-void index36(const int* const array, const size_t size)
+void zamena(const int* const array, const size_t size)
 {
 	for (size_t i = 0; i < size; ++i)
 	{
-		if (array[i] % 3 == 0 || array[i] % 6 == 0)
-		{
-			printf_s("%zu\n", i);
-		}
+		
 	}
 }
