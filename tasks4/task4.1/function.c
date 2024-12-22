@@ -1,4 +1,4 @@
-
+#include <limits.h>
 #include <errno.h>
 #include <stdarg.h>
 #include <time.h>
@@ -60,7 +60,7 @@ void manual_fill(int* const array, const size_t size)
 	for (size_t i = 0; i < size; ++i)
 	{
 		printf_s("Ââåäèòå %zu-é ýëåìåíò", i + 1);
-		array[i] = input(NULL);
+		array[i] = input();
 	}
 }
 
@@ -72,7 +72,7 @@ void random_fill(int* const array, const size_t size, const int min, const int m
 		array[i] = rand() % (max - min + 1) + min;
 	}
 }
-void check_array(const int* const array)
+int check_array(const int* const array)
 {
 	if (NULL == array)
 	{
@@ -80,24 +80,10 @@ void check_array(const int* const array)
 		perror("Íå âûäåëåíà ïàìÿòü");
 		exit(1);
 	}
+	return 0;
 }
 
-void print_array(
-	const int* const array,
-	const size_t size)
-{
-	check_array(array);
 
-	printf_s("{ ");
-
-	size_t i = 0;
-	for (; i < size - 1; ++i)
-	{
-		printf_s("%d, ", array[i]);
-	}
-
-	printf_s("%d }", array[i]);
-}
 
 void index36(const int* const array, const size_t size)
 {
@@ -123,10 +109,37 @@ void sumchet(const int* const array, const size_t size)
 	printf_s("%d", sum);
 }
 
-void zamena(const int* const array, const size_t size)
+void zamena(int* const array, const size_t size)
 {
+	size_t imin;
+	size_t imax;
+	int max = INT_MIN;
+	int min = INT_MAX;
 	for (size_t i = 0; i < size; ++i)
 	{
-		
+		if (array[i] < min)
+		{
+			imin = i;
+			min = array[i];
+		}
+		if(array[i] > max)
+		{
+			imax = i;
+			max = array[i];
+		}
+	}
+	if (imin > imax)
+	{
+		for (imax ; imax+1 < imin; ++imax)
+		{
+			array[imax + 1] = 0;
+		}
+	}
+	if (imin < imax)
+	{
+		for (imin ; imax+1 < imin; ++imin)
+		{
+			array[imin + 1] = 0;
+		}
 	}
 }
