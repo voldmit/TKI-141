@@ -13,9 +13,9 @@
 
 int main(void)
 {
-#if USE_LOCALE == 1
+	#if USE_LOCALE == 1
 	setlocale(LC_ALL, "ru-RU");
-#endif 
+	#endif 
 	puts("Введите размер массива:");
 	const size_t size = input_size();
 	puts("\n");
@@ -49,13 +49,20 @@ int main(void)
 	{
 		errno = ERANGE;
 		perror("Нет такого выбора");
+		free(array);
 		return 1;
 	}
 	}
 
 	print_array(array, size);
-
-
+	
+	index36(const int* const array, const size_t size);
+	
+	sumchet(const int* const array, const size_t size);
+	
+	zamena(const int* const array, const size_t size);
+	
+	print_array(array, size);
 	free(array);
 	
 
