@@ -59,7 +59,7 @@ void manual_fill(int* const array, const size_t size)
 {
 	for (size_t i = 0; i < size; ++i)
 	{
-		printf_s("Введите %zu-й элемент", i + 1);
+		printf_s("Введите %zu-й элемент:", i + 1);
 		array[i] = input();
 	}
 }
@@ -91,7 +91,7 @@ void index36(const int* const array, const size_t size)
 	{
 		if (array[i] % 3 == 0 || array[i] % 6 == 0)
 		{
-			printf_s("%zu\n", i);
+			printf_s("%zu, ", i);
 		}
 	}
 }
@@ -115,6 +115,7 @@ void zamena(int* const array, const size_t size)
 	size_t imax;
 	int max = INT_MIN;
 	int min = INT_MAX;
+	size_t h = 1;
 	for (size_t i = 0; i < size; ++i)
 	{
 		if (array[i] < min)
@@ -122,7 +123,7 @@ void zamena(int* const array, const size_t size)
 			imin = i;
 			min = array[i];
 		}
-		if(array[i] > max)
+		if (array[i] > max)
 		{
 			imax = i;
 			max = array[i];
@@ -130,16 +131,17 @@ void zamena(int* const array, const size_t size)
 	}
 	if (imin > imax)
 	{
-		for (imax ; imax+1 < imin; ++imax)
+		for (imax; imax + h < imin; ++imax)
 		{
-			array[imax + 1] = 0;
+			array[imax + h] = 0;
 		}
 	}
 	if (imin < imax)
 	{
-		for (imin ; imax+1 < imin; ++imin)
+		for (imin; imin + h < imax; ++imin)
 		{
-			array[imin + 1] = 0;
+			array[imin + h] = 0;
 		}
 	}
+	print_array(array, size);
 }
