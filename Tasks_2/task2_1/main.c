@@ -37,7 +37,7 @@ double mult(double a, enum operation b);
 * @brief исполняет программу
 * @return успешность программы
 */
-main(void)
+int main(void)
 {
 	setlocale(LC_ALL, "Rus");
 	puts("Пожалуйста введите число: ");
