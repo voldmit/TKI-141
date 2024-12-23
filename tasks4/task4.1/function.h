@@ -13,7 +13,7 @@ enum fill input_choice();
 
 int* get_array(const size_t size);
 
-void check_array(const int* const array);
+int check_array(const int* const array);
 
 void print_array(const int* const array, const size_t size);
 
