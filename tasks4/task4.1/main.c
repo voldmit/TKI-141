@@ -56,11 +56,11 @@ int main(void)
 
 	print_array(array, size);
 	
-	index36(const int* const array, const size_t size);
+	index36(array, size);
 	
-	sumchet(const int* const array, const size_t size);
+	sumchet( array, size);
 	
-	zamena(const int* const array, const size_t size);
+	zamena( array, size);
 	
 	print_array(array, size);
 	free(array);
